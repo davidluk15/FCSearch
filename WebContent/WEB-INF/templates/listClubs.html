@@ -167,21 +167,27 @@
 						<tr>
 							<th data-sortable="true">ClubID</th>
 							<th data-sortable="true">Vereinsname</th>
-							<th data-sortable="true">Genre</th>
-							<th data-sortable="true">Seasons</th>
+							<th data-sortable="true">Location</th>
+							<th data-sortable="true">Trainingstage</th>
+							<th data-sortable="true">Trainingszeit</th>
+							<th data-sortable="true">Sponsoren</th>
+							<th data-sortable="true">Gruendungsjahr</th>
 							<th>Actions</th>
 						</tr>
 					</thead>
 					<tbody>
 						<!--  list all items ----------------------------------------------------------- -->
-						<tr th:each="series : ${seriesP}">
-							<td th:text="${series.id}"></td>
-							<td th:text="${series.title}"></td>
-							<td th:text="${series.genre}"></td>
-							<td th:text="${series.seasonNr}"></td>
-							<td sec:authorize="hasRole('ROLE_ADMIN')">
+						<tr th:each="club : ${club}">
+							<td th:text="${club.clubId}"></td>
+							<td th:text="${club.clubName}"></td>
+							<td th:text="${club.location}"></td>
+							<td th:text="${club.trainingsDays}"></td>
+							<td th:text="${club.trainingsTime}"></td>
+							<td th:text="${club.sponsor}"></td>
+							<td th:text="${club.foundingYear}"></td>
+							<!-- <td sec:authorize="hasRole('ROLE_ADMIN')"> -->
 							
-							<a th:href="@{/deleteSeries(id=${series.id})}">
+							<a th:href="@{/deleteClub(id=${club.clubId})}">
 									<button type="button" class="btn btn-xs btn-danger">
 										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 										Delete
@@ -189,7 +195,7 @@
 							</a>
 							
 							
-							<a th:href="@{/editSeries(id=${series.id})}">
+							<a th:href="@{/editClub(id=${club.clubId})}">
 									<button type="button" class="btn btn-xs btn-success">
 										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 										Edit
