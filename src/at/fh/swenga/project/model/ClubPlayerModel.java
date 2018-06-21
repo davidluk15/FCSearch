@@ -1,10 +1,12 @@
 package at.fh.swenga.project.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +17,9 @@ public class ClubPlayerModel implements java.io.Serializable {
 	@Column(name = "clubPlayerId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int clubPlayerId;
+	
+	@ManyToOne (cascade = CascadeType.PERSIST)
+	ClubModel club;
 	
 	@Column(nullable = false, length = 30)
 	private String firstName;
@@ -91,6 +96,14 @@ public class ClubPlayerModel implements java.io.Serializable {
 
 	public void setTrikotNumber(int trikotNumber) {
 		this.trikotNumber = trikotNumber;
+	}
+	
+	public ClubModel getClub() {
+		return club;
+	}
+
+	public void setClub(ClubModel club) {
+		this.club = club;
 	}
 
 	@Override
