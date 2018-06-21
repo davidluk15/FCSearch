@@ -1,17 +1,30 @@
 package at.fh.swenga.project.model;
 
 import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "MatchDay")
 public class MatchDayModel implements java.io.Serializable{
+	
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	private LeagueModel league;
+	
+    @OneToMany(mappedBy="matchDay")
+    @OrderBy("home, guest")
+    private Set<MatchModel> matchs;
 
 	@Id
 	@Column(name = "matchDayId")
@@ -46,6 +59,22 @@ public class MatchDayModel implements java.io.Serializable{
 		this.matchDate = matchDate;
 	}
 
+	public LeagueModel getLeague() {
+		return league;
+	}
+
+	public void setLeague(LeagueModel league) {
+		this.league = league;
+	}
+
+	public Set<MatchModel> getMatchs() {
+		return matchs;
+	}
+
+	public void setMatchs(Set<MatchModel> matchs) {
+		this.matchs = matchs;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -66,5 +95,12 @@ public class MatchDayModel implements java.io.Serializable{
 		if (matchDayId != other.matchDayId)
 			return false;
 		return true;
+	}
+	
+	public void addMatch(MatchModel match) {
+		if (matchs==null) {
+			matchs= new HashSet<MatchModel>();
+		}
+		matchs.add(match);
 	}
 }

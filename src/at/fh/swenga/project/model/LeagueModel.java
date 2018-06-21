@@ -1,10 +1,15 @@
 package at.fh.swenga.project.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +20,14 @@ public class LeagueModel {
 	@Column(name = "leagueId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int leagueId;
+	
+    @OneToMany(mappedBy="league")
+    @OrderBy("clubName")
+    private Set<ClubModel> clubs;
+    
+    @OneToMany(mappedBy="league")
+    @OrderBy("matchDayID")
+    private Set<MatchDayModel> matchDays;
 
 	@Column(nullable = false, length = 30)
 	private String leagueName;
@@ -82,6 +95,22 @@ public class LeagueModel {
 		this.numberOfRelegatedTeams = numberOfRelegatedTeams;
 	}
 
+	public Set<ClubModel> getClubs() {
+		return clubs;
+	}
+
+	public void setClubs(Set<ClubModel> clubs) {
+		this.clubs = clubs;
+	}
+
+	public Set<MatchDayModel> getMatchDays() {
+		return matchDays;
+	}
+
+	public void setMatchDays(Set<MatchDayModel> matchDays) {
+		this.matchDays = matchDays;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -108,5 +137,19 @@ public class LeagueModel {
 		} else if (!leagueName.equals(other.leagueName))
 			return false;
 		return true;
+	}
+	
+	public void addClub(ClubModel club) {
+		if (clubs==null) {
+			clubs= new HashSet<ClubModel>();
+		}
+		clubs.add(club);
+	}
+	
+	public void addMatchDay(MatchDayModel matchDay) {
+		if (matchDays==null) {
+			matchDays= new HashSet<MatchDayModel>();
+		}
+		matchDays.add(matchDay);
 	}
 }

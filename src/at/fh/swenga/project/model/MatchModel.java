@@ -13,6 +13,9 @@ import javax.persistence.Table;
 @Table (name = "Match")
 public class MatchModel implements java.io.Serializable{
 	
+	@ManyToOne (cascade = CascadeType.PERSIST)
+	private MatchDayModel matchDay;
+	
 	@Id
 	@Column(name = "matchId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,10 +30,7 @@ public class MatchModel implements java.io.Serializable{
 	@Column(nullable = false, length = 30)
 	private String matchTime;
 	
-	@ManyToOne (cascade = CascadeType.PERSIST)
-	private MatchDayModel matchDay;
-	
-	
+
 	public MatchModel() {
 		super();
 	}
@@ -79,6 +79,13 @@ public class MatchModel implements java.io.Serializable{
 		this.matchTime = matchTime;
 	}
 
+	public MatchDayModel getMatchDay() {
+		return matchDay;
+	}
+
+	public void setMatchDay(MatchDayModel matchDay) {
+		this.matchDay = matchDay;
+	}
 
 	@Override
 	public int hashCode() {

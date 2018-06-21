@@ -19,14 +19,18 @@ import javax.persistence.Table;
 
 public class ClubModel implements java.io.Serializable {
 
+	@OneToMany(mappedBy = "club")
+	@OrderBy("lastName, firstName")
+	private Set<ClubPlayerModel> clubPlayers;
+	
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	private LeagueModel league;
+	
+
 	@Id
 	@Column(name = "clubId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int clubId;
-
-	@OneToMany(mappedBy = "club")
-	@OrderBy("lastName, firstName")
-	private Set<ClubPlayerModel> clubPlayers;
 
 	@Column(nullable = false, length = 30)
 	private String clubName;
@@ -48,9 +52,6 @@ public class ClubModel implements java.io.Serializable {
 
 	@Column(nullable = false, length = 30)
 	private int foundingYear;
-
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	private LeagueModel league;
 
 	public ClubModel() {
 		super();
@@ -140,6 +141,14 @@ public class ClubModel implements java.io.Serializable {
 		this.league = league;
 	}
 	
+	public Set<ClubPlayerModel> getClubPlayers() {
+		return clubPlayers;
+	}
+
+	public void setClubPlayers(Set<ClubPlayerModel> clubPlayers) {
+		this.clubPlayers = clubPlayers;
+	}
+
 	public void addClubPlayer(ClubPlayerModel clubPlayer) {
 		if (clubPlayers==null) {
 			clubPlayers= new HashSet<ClubPlayerModel>();
