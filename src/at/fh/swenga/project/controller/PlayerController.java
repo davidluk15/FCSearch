@@ -28,7 +28,7 @@ public class PlayerController {
 
 	
 	@RequestMapping(value = { "/listPlayers" })
-	public String showAllSeries(Model model) {
+	public String showAllPlayers(Model model) {
 			
 		
 		List<PlayerModel> playerModel = playerRepository.findAll();

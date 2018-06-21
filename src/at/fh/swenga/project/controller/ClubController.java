@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import at.fh.swenga.project.dao.ClubRepository;
+import at.fh.swenga.project.dao.PlayerRepository;
 import at.fh.swenga.project.model.ClubModel;
+import at.fh.swenga.project.model.PlayerModel;
 
 @Controller
 public class ClubController {
@@ -24,107 +26,47 @@ public class ClubController {
 	@Autowired
 	ClubRepository clubRepository;
 	
-	@RequestMapping(value = {"clubList"})
-	public String clubIndex(Model model) {
-		List<ClubModel> clubs = clubRepository.findAll();
-		model.addAttribute("clubs", clubs);
-		model.addAttribute("count", clubs.size());
-		return "clubIndex";
-	}
-	
-	@RequestMapping(value = { "addClub" })
-	public String showAddClubForm(Model model) {
+	@RequestMapping(value = { "/", "index" })
+	public String index(Model model) {
 		
-		return "addEditClub";
-	}
-
-/*	// Spring 4: @RequestMapping(value = "/addEmployee", method =
-	// RequestMethod.POST)
-	@PostMapping("/addClub")
-	public String addClub(@Valid ClubModel newClubModel, BindingResult bindingResult, Model model) {
-
-		// Any errors? -> Create a String out of all errors and return to the
-		// page
-		if (bindingResult.hasErrors()) {
-			String errorMessage = "";
-			for (FieldError fieldError : bindingResult.getFieldErrors()) {
-				errorMessage += fieldError.getField() + " is invalid<br>";
-			}
-			model.addAttribute("errorMessage", errorMessage);
-
-			// Multiple ways to "forward"
-			return "forward:/listClubs";
-		}
-
-		// Look for employee in the List. One available -> Error
-		ClubModel club = clubRepository.getClubByClubId(newClubModel.getClubId());
-
-		if (club != null) {
-			model.addAttribute("errorMessage", "Dieser Verein wurde bereits angelegt!<br>");
-		} else {
-			clubRepository.addClub(newClubModel);
-			model.addAttribute("message", "Verein " + newClubModel.getClubId() + " wurde hinzugefügt.");
-		}
-
-		return "forward:/listClubs";
-	}*/
-
-	// Spring 4: @RequestMapping(value = "/editEmployee", method =
-	// RequestMethod.GET)
-	@GetMapping("/editClub")
-	public String showChangeClubForm(Model model, @RequestParam int clubId) {
-
-		ClubModel club = clubRepository.getClubByClubId(clubId);
-
-		if (club != null) {
-			model.addAttribute("club", club);
-			return "editClub";
-		} else {
-			model.addAttribute("errorMessage", "Der Verein mit der Nummer " + clubId + " konnte nicht gefunden werden.");
-			return "forward:/listClubs";
-		}
-	}
-
-	// Spring 4: @RequestMapping(value = "/editEmployee", method =
-	// RequestMethod.POST)
-	@PostMapping("/editClub")
-	public String editClub(@Valid ClubModel changedClubModel, BindingResult bindingResult, Model model) {
-
-		// Any errors? -> Create a String out of all errors and return to the
-		// page
-		if (bindingResult.hasErrors()) {
-			String errorMessage = "";
-			for (FieldError fieldError : bindingResult.getFieldErrors()) {
-				errorMessage += fieldError.getField() + " is invalid<br>";
-			}
-			model.addAttribute("errorMessage", errorMessage);
-			return "forward:/listClubs";
-		}
-
-		// Get the employee we want to change
-		ClubModel club = clubRepository.getClubByClubId(changedClubModel.getClubId());
-
-		if (club == null) {
-			model.addAttribute("errorMessage", "Dieser Verein wurde noch nicht angelegt!<br>");
-		} else {
-			// Change the attributes
-			club.setClubId(changedClubModel.getClubId());
-			club.setClubName(changedClubModel.getClubName());
-			club.setLocation(changedClubModel.getLocation());
-			club.setCoach(changedClubModel.getCoach());
-			club.setTrainingDays(changedClubModel.getTrainingDays());
-			club.setTrainingTime(changedClubModel.getTrainingTime());
-			club.setSponsor(changedClubModel.getSponsor());
-			club.setFoundingYear(changedClubModel.getFoundingYear());
-
-			// Save a message for the web page
-			model.addAttribute("message", "Verein " + changedClubModel.getClubId() + " wurde geändert.");
-		}
-
-		return "forward:/listClubs";
+		return "index";
 	}
 	
+	@RequestMapping(value = { "/listClubs" })
+	public String showAllClubs(Model model) {
+			
+		
+		List<ClubModel> clubModel = clubRepository.findAll();
+		model.addAttribute("clubModel", clubModel);
+		
+	
+		return "listClubs";
+	}
 
+	@RequestMapping(value = {"addClub"})
+	public String showAddClub(Model model) {
+		
+		return "editClub";
+	}
+	
+	@RequestMapping("/deleteClub")
+	public String deleteClub(Model model, @RequestParam int id) {
+		clubRepository.deleteById(id);
+
+		return "forward:listClubs";
+	}
+	
+	@RequestMapping(value = { "login" })
+	public String login(Model model) {
+		
+		return "login";
+	}
+	
+	@RequestMapping(value = { "register" })
+	public String register(Model model) {
+		
+		return "register";
+	}
 
 	@ExceptionHandler(Exception.class)
 	public String handleAllException(Exception ex) {

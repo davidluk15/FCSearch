@@ -1,139 +1,96 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
 <head>
-<div th:replace="~{includes/bootstrapMeta :: bootstrapMeta}" />
-<title>Employee Manager</title>
-<div th:replace="~{includes/bootstrapCSS :: bootstrapCSS}" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	
+    <title>FCSearch</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/shop-homepage.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
+
 <body>
-	<div class="container" role="main">
 
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index">FCSearch</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">Über uns</a>
+                    </li>
+                    <li>
+                        <a href="listClubs">Vereine</a>
+                    </li>
+                    <li>
+                        <a href="listPlayers">Spieler</a>
+                    </li>
+                    <li>
+                        <a href="#">Kontakt</a>
+                    </li>
+                    <li style="position:absolute;right:50px;">
+                        <a href="login">Login</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 
+ 
+    <!-- /.container -->
 
-		<!--  1 simple button ----------------------------------------------------------- -->
-		<div class="row">
-			<div class="col-md-10">
-				<h1>FC Search</h1>
-			</div>
+    <div class="container">
 
-			<div class="col-md-2">
-				<a href="fillEmployeeList">
-					<button type="button" class="btn btn-success">Fill List</button>
-				</a>
-			</div>
-		</div>
+        <hr>
 
-		<!--  search by Id ----------------------------------------------------------- -->
-		<form action="findById" method="post">
-			<div class="form-row">
-				<div class="form-group col-sm-12">
-					<label for="id">Find by Id:</label>
-					<input id="id" type="text" class="form-control" name="id">
-				</div>
-			</div>
-			<div class="form-row">
-				<div class="form-group col-sm-12">
-					<input class="btn btn-primary" type="submit" value="Do it">
-				</div>
-			</div>
-		</form>
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; FCSearch</p>
+                </div>
+            </div>
+        </footer>
 
-		<!--  paging example ----------------------------------------------------------- -->
-		<form action="getPage" method="post">
-			<div class="form-row">
-				<div class="form-group col-sm-6">
-					<label for="page">Page:</label>
-					<input id="page" type="text" class="form-control" name="page">
-				</div>		
-				<div class="form-group col-sm-6">
-					<label for="size">Size:</label>
-					<input id="size" type="text" class="form-control" name="size">	
-				</div>
-			</div>	
-			<div class="form-row">
-				<div class="form-group col-sm-12">
-			  		<input class="btn btn-primary" type="submit" value="Do it">
-				</div>
-			</div>
-		</form>
+    </div>
+    <!-- /.container -->
 
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
 
-		<!--  Search + Fill ----------------------------------------------------------- -->
-			<form method="post" action="find">
-				<div class="form-row">
-					<div class="form-group col-sm-6">
-						<label for="searchType">Search:</label> 
-						<select id="searchType" class="form-control" name="searchType">
-							<option value="query1" selected="selected">Spieler nach verfügbaren Trainingstagen anzeigen</option>							
-							<option value="query2">Filter employees by last name</option>
-							<option value="query3">Filter employees by first name</option>
-							<option value="query4">Filter employees by first name or last name</option>
-							<option value="query5">search with named query</option>
-							<option value="query6">count employees by lastname</option>
-							<option value="query7">delete employees with given lastname</option>
-							<option value="query8">delete all employees from company</option>
-							<option value="query9">list of employees where last name or first name contains a given searchstring</option>
-							<option value="query10">order list by last name</option>
-							<option value="query11">Sort all employees by last name ascending (top 10)</option>
-							<option value="query12">sort employees by lastname @ company</option>
-							<option value="query13">not older than 40 </option>
-							<option value="query14">born between 1980 and 1985</option>
-							<option value="query15">Filter employees by company name</option>
-						</select>
-					</div>
-					<div class="form-group col-sm-6">
-						<label for="searchString">SearchString:</label>
-						<input id="searchString" class="form-control" type="text" name="searchString">
-					</div>
-				</div>
-				<div class="form-row">
-					<div class="form-group col-sm-12">
-						<input class="btn btn-primary" type="submit" value="Do it">	
-					</div>
-				</div>
-			</form>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
 
-			<!--  Search + Fill ----------------------------------------------------------- -->
-			<h3>Count: <span th:text="${count}"></span></h3>
-
-		<div class="row">
-			<div class="col-md-10 offset-md-1">
-
-				<table data-toggle="table" class="table table-striped">
-					<thead>
-						<tr>
-							<th>Spieler ID</th>
-							<th>Vorname</th>
-							<th>Nachname</th>
-							<th>Position</th>
-							<th>Alter</th>
-							<th>Trainingstage</th>
-							<th>Verein</th>
-							<th>Löschen</th>
-						</tr>
-					</thead>
-					<tbody>
-						<!--  list all items ----------------------------------------------------------- -->
-						<tr th:each="player : ${players}">
-							<td th:text="${player.playerId}"></td>
-							<td th:text="${player.firstName}"></td>
-							<td th:text="${player.lastName}"></td>
-							<td th:text="${player.position}"></td>
-							<td th:text="${player.age}"></td>
-							<td th:text="${player.availabelTrainingDays}"></td>
-							<td th:text="${player.club.clubName}"></td>
-							<td><a th:href="@{/delete(id=${player.playerId})}" class="btn btn-danger">Delete</a></td>
-							
-						</tr>
-						<!--  list all items ----------------------------------------------------------- -->
-					</tbody>
-				</table>
-								
-			</div>
-		</div>
-	</div>
-	<!--  End of container -->
-	<div th:replace="~{includes/bootstrapJS :: bootstrapJS}" />
 </body>
+
 </html>
