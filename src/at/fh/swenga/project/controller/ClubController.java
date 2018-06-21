@@ -24,12 +24,12 @@ public class ClubController {
 	@Autowired
 	ClubRepository clubRepository;
 	
-	@RequestMapping(value = { "/", "clubList" })
-	public String index(Model model) {
+	@RequestMapping(value = {"clubList"})
+	public String clubIndex(Model model) {
 		List<ClubModel> clubs = clubRepository.findAll();
 		model.addAttribute("clubs", clubs);
 		model.addAttribute("count", clubs.size());
-		return "index";
+		return "clubIndex";
 	}
 	
 	@GetMapping("/addClub")

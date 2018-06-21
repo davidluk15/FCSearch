@@ -54,7 +54,7 @@ public class PlayerController {
 
 		switch (searchType) {
 		case "query1":
-			//employees = employeeRepository.;
+			players = playerRepository.findByLastName(searchString);
 			break;
 		case "query2":
 			//employees = employeeRepository.;
