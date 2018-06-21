@@ -26,12 +26,6 @@ public class ClubController {
 	@Autowired
 	ClubRepository clubRepository;
 	
-	//@RequestMapping(value = { "/", "index" })
-	//public String index(Model model) {
-		
-		//return "index";
-	//}
-	
 	@RequestMapping(value = { "/listClubs" })
 	public String showAllClubs(Model model) {
 			
