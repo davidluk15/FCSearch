@@ -1,5 +1,8 @@
 package at.fh.swenga.project.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 @Entity
@@ -14,36 +19,39 @@ import javax.persistence.Table;
 
 public class ClubModel implements java.io.Serializable {
 
-	
 	@Id
 	@Column(name = "clubId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int clubId;
-	
+
+	@OneToMany(mappedBy = "club")
+	@OrderBy("lastName, firstName")
+	private Set<ClubPlayerModel> clubPlayers;
+
 	@Column(nullable = false, length = 30)
 	private String clubName;
-	 
+
 	@Column(nullable = false, length = 30)
 	private String location;
-	
+
 	@Column(nullable = false, length = 30)
 	private String trainingDays;
-	
+
 	@Column(nullable = false, length = 30)
 	private String coach;
-	
+
 	@Column(nullable = false, length = 30)
 	private String trainingTime;
-	
+
 	@Column(nullable = false, length = 30)
 	private String sponsor;
-	
+
 	@Column(nullable = false, length = 30)
 	private int foundingYear;
 
-	@ManyToOne (cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private LeagueModel league;
-	
+
 	public ClubModel() {
 		super();
 	}
@@ -132,8 +140,11 @@ public class ClubModel implements java.io.Serializable {
 		this.league = league;
 	}
 	
-	
-	
-	
+	public void addClubPlayer(ClubPlayerModel clubPlayer) {
+		if (clubPlayers==null) {
+			clubPlayers= new HashSet<ClubPlayerModel>();
+		}
+		clubPlayers.add(clubPlayer);
+	}
 
 }
