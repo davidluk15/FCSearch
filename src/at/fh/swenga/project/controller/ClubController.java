@@ -26,11 +26,11 @@ public class ClubController {
 	@Autowired
 	ClubRepository clubRepository;
 	
-	@RequestMapping(value = { "/", "index" })
-	public String index(Model model) {
+	//@RequestMapping(value = { "/", "index" })
+	//public String index(Model model) {
 		
-		return "index";
-	}
+		//return "index";
+	//}
 	
 	@RequestMapping(value = { "/listClubs" })
 	public String showAllClubs(Model model) {
@@ -56,18 +56,6 @@ public class ClubController {
 		return "forward:listClubs";
 	}
 	
-	@RequestMapping(value = { "login" })
-	public String login(Model model) {
-		
-		return "login";
-	}
-	
-	@RequestMapping(value = { "register" })
-	public String register(Model model) {
-		
-		return "register";
-	}
-
 	@ExceptionHandler(Exception.class)
 	public String handleAllException(Exception ex) {
 
