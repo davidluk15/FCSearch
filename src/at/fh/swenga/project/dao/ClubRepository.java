@@ -18,6 +18,4 @@ public interface ClubRepository extends JpaRepository<ClubModel, Integer> {
 
 	ClubModel getClubByClubId(int clubId);
 
-	void addClub(@Valid ClubModel newClubModel);
-
 }
