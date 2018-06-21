@@ -114,7 +114,7 @@ public class PlayerController {
 		return "editPlayer";
 	}
 	
-	@RequestMapping(value = {"editSeries"})
+	@RequestMapping(value = {"editPlayer"})
 	public String showEditPlayer(Model model) {
 		
 		return "editPlayer";
