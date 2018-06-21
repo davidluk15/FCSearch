@@ -32,12 +32,13 @@ public class ClubController {
 		return "clubIndex";
 	}
 	
-	@GetMapping("/addClub")
+	@RequestMapping(value = { "addClub" })
 	public String showAddClubForm(Model model) {
-		return "editClub";
+		
+		return "addEditClub";
 	}
 
-	// Spring 4: @RequestMapping(value = "/addEmployee", method =
+/*	// Spring 4: @RequestMapping(value = "/addEmployee", method =
 	// RequestMethod.POST)
 	@PostMapping("/addClub")
 	public String addClub(@Valid ClubModel newClubModel, BindingResult bindingResult, Model model) {
@@ -66,7 +67,7 @@ public class ClubController {
 		}
 
 		return "forward:/listClubs";
-	}
+	}*/
 
 	// Spring 4: @RequestMapping(value = "/editEmployee", method =
 	// RequestMethod.GET)
@@ -122,6 +123,8 @@ public class ClubController {
 
 		return "forward:/listClubs";
 	}
+	
+
 
 	@ExceptionHandler(Exception.class)
 	public String handleAllException(Exception ex) {
