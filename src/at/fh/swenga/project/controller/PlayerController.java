@@ -5,9 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 
 import at.fh.swenga.project.dao.PlayerRepository;
 import at.fh.swenga.project.model.PlayerModel;
@@ -31,9 +32,8 @@ public class PlayerController {
 	public String showAllPlayers(Model model) {
 			
 		
-		List<PlayerModel> playerModel = playerRepository.findAll();
-		model.addAttribute("playerModel", playerModel);
-		
+		List<PlayerModel> entries = playerRepository.findAll();
+		model.addAttribute("entries", entries);
 	
 		return "listPlayers";
 	}
@@ -108,11 +108,33 @@ public class PlayerController {
 	
 	
 	
-	@RequestMapping(value = {"addPlayer"})
+	@RequestMapping(value = {"addPlayer"}, method = RequestMethod.GET)
 	public String showAddPlayer(Model model) {
 		
-		return "editPlayer";
+		List<PlayerModel> entries = playerRepository.findAll();
+		model.addAttribute("entries", entries);
+				
+		return "addEditPlayer";
 	}
+	
+	@RequestMapping(value = "addPlayer", method = RequestMethod.POST)
+    public String addEntry( PlayerModel playerModelForm, BindingResult bindingResult, Model model) 
+	{
+		
+		//System.out.println(playerModelForm.getFirstName());
+        if (bindingResult.hasErrors()) {
+            return "addEditPlayer";
+        }
+        
+      playerRepository.save(playerModelForm);
+      
+      return showAddPlayer(model);
+     
+    }
+	
+
+	
+	
 	
 	@RequestMapping(value = {"editPlayer"})
 	public String showEditPlayer(Model model) {

@@ -145,7 +145,7 @@
 			<div class="col-md-4 col-md-offset-5">
 				<p>
 					<span sec:authorize="hasRole('ROLE_ADMIN')">
-					<a href="addSeries">
+					<a href="addPlayer">
 						<button type="button" class="btn btn-success">Spieler hinzufügen</button>
 							</a></span>	
 							
@@ -176,14 +176,15 @@
 					<tbody>
 						<!--  list all items ----------------------------------------------------------- -->
 						<tr th:each="player : ${players}">
-							<td th:text="${player.id}"></td>
+							<td th:text="${player.playerId}"></td>
 							<td th:text="${player.firstName}"></td>
 							<td th:text="${player.lastName}"></td>
+							<td th:text="${player.position}"></td>
 							<td th:text="${player.age}"></td>
 							<td th:text="${player.availabelTrainingDays}"></td>
 							<td sec:authorize="hasRole('ROLE_ADMIN')">
 							
-							<a th:href="@{/deletePlayer(id=${player.id})}">
+							<a th:href="@{/deletePlayer(id=${player.playerId})}">
 									<button type="button" class="btn btn-xs btn-danger">
 										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 										Delete
@@ -191,7 +192,7 @@
 							</a>
 							
 							
-							<a th:href="@{/editPlayer(id=${player.id})}">
+							<a th:href="@{/editPlayer(id=${player.playerId})}">
 									<button type="button" class="btn btn-xs btn-success">
 										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 										Edit

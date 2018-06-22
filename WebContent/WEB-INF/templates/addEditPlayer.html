@@ -31,7 +31,7 @@
 			<div class="col-md-8 col-md-offset-2">
 				<form class="form-horizontal" method="post" th:action="${player} ? @{/editPlayer(id=${player.playerId})} : @{addPlayer}">
 					<fieldset>
-						<legend th:text="${series}? 'Change series' : 'New series'">New Series</legend>
+						<legend th:text="${player}? 'Change player' : 'New player'">New Player</legend>
 
 
 						<!-- --------------  Vorname ---------------- -->
