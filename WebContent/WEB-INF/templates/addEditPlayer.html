@@ -4,23 +4,23 @@
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-	
-    <title>Spieler bearbeiten</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
 
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+<title>Spieler bearbeiten</title>
 
-    <!-- Custom CSS -->
-    <link href="css/shop-homepage.css" rel="stylesheet">
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+<!-- Custom CSS -->
+<link href="css/shop-homepage.css" rel="stylesheet">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
@@ -29,9 +29,13 @@
 	<div class="container" role="main">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
-				<form class="form-horizontal" method="post" th:action="${player} ? @{/editPlayer} : @{addPlayer}">
+				<form class="form-horizontal" method="post"
+					th:action="${player} ? @{/editPlayer(playerId=${player.playerId})} : @{addPlayer}">
 					<fieldset>
 						<legend th:text="${player}? 'Change player' : 'New player'">New Player</legend>
+
+
+
 
 
 						<!-- --------------  Vorname ---------------- -->
@@ -50,7 +54,7 @@
 									name="lastName" th:value="${player} ? ${player.lastName}">
 							</div>
 						</div>
-						
+
 						<!-- --------------  Position ---------------- -->
 						<div class="form-group">
 							<label for="inputPosition" class="col-md-2 control-label">Position</label>
@@ -59,29 +63,31 @@
 									name="position" th:value="${player} ? ${player.position}">
 							</div>
 						</div>
-						
+
 						<!-- --------------  type  ---------------- -->
 						<div class="form-group">
 							<label for="inputAge" class="col-md-2 control-label">Alter</label>
 							<div class="col-md-10">
-								<input class="form-control" id="inputAge" type="text"
-									name="age" th:value="${player} ? ${player.age}">
+								<input class="form-control" id="inputAge" type="text" name="age"
+									th:value="${player} ? ${player.age}">
 							</div>
 						</div>
-						
+
 						<!-- --------------  availabelTrainingDays ---------------- -->
 						<div class="form-group">
-							<label for="inputAvailabelTrainingDays" class="col-md-2 control-label">Trainingstage</label>
+							<label for="inputAvailabelTrainingDays"
+								class="col-md-2 control-label">Trainingstage</label>
 							<div class="col-md-10">
-								<input class="form-control" id="inputAvailabelTrainingDays" type="text"
-									name="availabelTrainingDays" th:value="${player} ? ${player.availabelTrainingDays}">
+								<input class="form-control" id="inputAvailabelTrainingDays"
+									type="text" name="availabelTrainingDays"
+									th:value="${player} ? ${player.availabelTrainingDays}">
 							</div>
 						</div>
-						
-						
-			
-					
-					
+
+
+
+
+
 
 						<!-- --------------  buttons ---------------- -->
 						<div class="form-group">

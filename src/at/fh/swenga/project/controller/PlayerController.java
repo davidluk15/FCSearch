@@ -1,16 +1,16 @@
+
 package at.fh.swenga.project.controller;
 
 import java.util.List;
+import java.util.Optional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -126,28 +126,49 @@ public class PlayerController {
 		return listPlayers(model);
 
 	}
+
+	@RequestMapping(value = {"editPlayer"})
+	public String editPlayer(Model model, @RequestParam int playerId, PlayerModel playerModel) {
+
+		Optional<PlayerModel> playerOptional = playerRepository.findById(playerId);
+		PlayerModel player = playerOptional.get();
+		model.addAttribute("player", player);
 	
-	public void getPlayer () {
 		
-	}
-	
-
-	@RequestMapping(value = {"editPlayer"}, method = RequestMethod.GET)
-	public String editPlayer(Model model, @RequestParam(value = "playerId") PlayerModel playerModel) {
-
-		model.addAttribute("player", playerModel);
-
 		return "addEditPlayer";
 	}
 
-	@RequestMapping(value = "/editPlayer", method = RequestMethod.POST)
-	public String updatePlayer(Model model,  @RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName, @RequestParam("position") String position,
-			@RequestParam("age") int age, @RequestParam("availabelTrainingDays") String availabelTrainingDays) {
-			
-		
-		
-		return "listPlayers";
-	}
+	@RequestMapping(value = "editPlayer", method = RequestMethod.POST)
+	public String editPlayer(@Valid PlayerModel newPlayerModel, BindingResult bindingResult, Model model,
+			@RequestParam("playerId") int playerId) {
+
+		if (bindingResult.hasErrors()) {
+			String errorMessage = "";
+			for (FieldError fieldError : bindingResult.getFieldErrors()) {
+				errorMessage += fieldError.getField() + " is invalid<br>";
+			}
+			model.addAttribute("errorMessage", errorMessage);
+			return "listPlayers";
+		}
+
+		else {
+		Optional<PlayerModel> playerOptional = playerRepository.findById(newPlayerModel.getPlayerId());
+
+		PlayerModel player = playerOptional.get();
+
+		player.setFirstName(newPlayerModel.getFirstName());
+		player.setLastName(newPlayerModel.getLastName());
+		player.setPosition(newPlayerModel.getPosition());
+		player.setAge(newPlayerModel.getAge());
+		player.setFirstName(newPlayerModel.getFirstName());
+		player.setAvailabelTrainingDays(newPlayerModel.getAvailabelTrainingDays());
+
+		playerRepository.save(player);
+		return "forward:listPlayers";
+		}
+
+		}
+	
 
 
 	@RequestMapping("/deletePlayer")
@@ -168,5 +189,6 @@ public class PlayerController {
 
 		return "register";
 	}
+
 
 }
