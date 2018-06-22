@@ -93,19 +93,26 @@
 		<nav th:replace="~{includes/searchNav :: search}"></nav>
 		
 		<!--  search by Id ----------------------------------------------------------- -->
+		
 		<div class="row">
 			<div class="col-md-12">
+			<span sec:authorize="hasRole('ROLE_ADMIN')">
 				<form class="form-horizontal" action="findById" method="post">
 					<div class="form-group">
-						<label class="control-label col-md-2" for="id">Find by Id:</label>
+						<label class="control-label col-md-2" for="id">
+						<span aria-hidden="true"></span>
+						Suchen nach ClubID:</label>
 						<div class="col-md-5">
 					 		<input type="text" name="id">
 						</div>
+						<span aria-hidden="true"></span>
 						<div class="col-md-5">
 					  		<input class="btn btn-default" type="submit" value="Los!">
-						</div>		
+						</div>
+								
 					</div>		
 				</form>
+			</span>
 			</div>
 		</div>
 
@@ -120,14 +127,9 @@
 							<label class="control-label col-md-2" for="searchType">Suche:</label> 
 							<div class="col-md-5">
 								<select name="searchType">
-									<option value="query1" selected="selected">Show all series</option>							
-									<option value="query2">Filter series by title</option>
-									<option value="query3">Filter series by genre</option>
-									<option value="query4">search with named query</option>
-									<option value="query5">delete series with given genre</option>
-									<option value="query6">list of series title contains a given searchstring</option>
-									<option value="query7">order list by title</option>
-									<option value="query8">Sort all series by genre ascending (top 10)</option>
+									<option value="query1" selected="selected">Nach Vereinsnamen suchen:</option>							
+									<option value="query2">Nach Trainingstag sortieren</option>
+									<option value="query3">Nach Trainer suchen:</option>
 								</select>
 							</div>
 						</div>
@@ -191,21 +193,21 @@
 							<td th:text="${club.sponsor}"></td>
 							<td th:text="${club.foundingYear}"></td>
 							
-							<td sec:authorize="hasRole('ROLE_ADMIN')">
-							<a th:href="@{/deleteClub(clubId=${club.clubId})}">
+							<a sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_CLUB)" th:href="@{/editClub(clubId=${club.clubId})}">
+									<button type="button" class="btn btn-xs btn-success">
+										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+										Bearbeiten
+									</button>
+							</a></td>
+							
+							<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/deleteClub(clubId=${club.clubId})}">
 									<button type="button" class="btn btn-xs btn-danger">
 										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 										L&ouml;schen
 									</button>
 							</a>
 							
-							<td sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_CLUB)">
-							<a th:href="@{/editClub(clubId=${club.clubId})}">
-									<button type="button" class="btn btn-xs btn-success">
-										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-										Bearbeiten
-									</button>
-							</a></td>
+							
 						</tr>
 						<!--  list all items ----------------------------------------------------------- -->
 					</tbody>
