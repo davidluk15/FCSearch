@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 	
-    <title>FCSearch</title>
+    <title>Club bearbeiten</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -77,13 +77,15 @@
 						<legend th:text="${club}? 'Change Club' : 'New Club'">Neuer Verein</legend>
 
 
-						<!--  ----------------  clubId ---------------- -->
+						<!--  ----------------  clubId ---------------- 
 						<div class="form-group">
 							<label for="inputClubId" class="col-md-2 control-label">ClubID</label>
 							<div class="col-md-10">
 								<input class="form-control" id="inputSSNClubId" type="text" name="clubId" th:value="${club} ? ${club.clubId}" th:readonly="${club}">
 							</div>
 						</div>
+						
+						-->
 
 						<!-- --------------  clubName ---------------- -->
 						<div class="form-group">
