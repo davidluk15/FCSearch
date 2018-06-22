@@ -32,7 +32,7 @@ public class ClubModel implements java.io.Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int clubId;
 
-	@Column(nullable = false, length = 30)
+	@Column(nullable = false, length = 100)
 	private String clubName;
 
 	@Column(nullable = false, length = 30)

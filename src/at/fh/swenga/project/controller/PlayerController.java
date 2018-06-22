@@ -48,51 +48,24 @@ public class PlayerController {
 
 		switch (searchType) {
 		case "query1":
-			// employees = employeeRepository.findAll();
+			players = playerRepository.findAll();
 			break;
 		case "query2":
-			// employees = employeeRepository.findByLastName(searchString);
+			players = playerRepository.findByPosition(searchString);
 			break;
 		case "query3":
-			// employees = employeeRepository.findByFirstName(searchString);
+			players = playerRepository.findByAvailabelTrainingDays(searchString);
 			break;
 		case "query4":
-			// employees = employeeRepository.findByFirstOrLastName(searchString);
+			players = playerRepository.findByAge(Integer.parseInt(searchString));
 			break;
 		case "query5":
-			// employees = employeeRepository.findByFirstOrLastNameZwei(searchString);
+			players = playerRepository.findByLastName(searchString);
 			break;
 		case "query6":
-			// count = employeeRepository.countByLastName(searchString);
+			players = playerRepository.findByFirstName(searchString);
 			break;
-		case "query7":
-			// employees = employeeRepository.removeByLastName(searchString);
-			break;
-		case "query8":
-			// employees = employeeRepository.;
-			break;
-		case "query9":
-			// employees =
-			// employeeRepository.findByLastNameContainingIgnoreCaseOrFirstNameContainingIgnoreCase(searchString,searchString);
-			break;
-		case "query10":
-			// employees = employeeRepository.;
-			break;
-		case "query11":
-			// employees = employeeRepository.;
-			break;
-		case "query12":
-			// employees = employeeRepository.;
-			break;
-		case "query13":
-			// employees = employeeRepository.;
-			break;
-		case "query14":
-			// employees = employeeRepository.;
-			break;
-		case "query15":
-			// employees = employeeRepository.;
-			break;
+		
 
 		default:
 			players = playerRepository.findAll();
@@ -105,7 +78,7 @@ public class PlayerController {
 		} else {
 			model.addAttribute("count", count);
 		}
-		return "index";
+		return "listPlayers";
 	}
 
 	@RequestMapping(value = { "addPlayer" }, method = RequestMethod.GET)
@@ -122,6 +95,8 @@ public class PlayerController {
 
 		// System.out.println(playerModelForm.getFirstName());
 		if (bindingResult.hasErrors()) {
+			model.addAttribute("errorMessage", "Ein Fehler ist aufgetreten");
+
 			return "listPlayers";
 		}
 

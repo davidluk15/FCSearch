@@ -92,10 +92,7 @@
 
 
 		
-
-
-		<hr>
-
+		
 
 		<!--  Search + Fill ----------------------------------------------------------- -->
 			<div class="row">
@@ -106,11 +103,11 @@
 							<div class="col-md-5">
 								<select name="searchType">
 									<option value="query1" selected="selected">Zeige alle Spieler</option>							
-									<option value="query2">Suche Spieler bei Vorname</option>
-									<option value="query3">Suche Spieler bei Nachname</option>
-									<option value="query4">Suche nach Position</option>
-									<option value="query5">Suche nach Alter</option>
-									<option value="query6">Suche nachTrainingstagen</option>
+									<option value="query2">Suche Spieler nach Position</option>
+									<option value="query3">Suche nach Trainingstagen</option>
+									<option value="query4">Suche nach Alter</option>
+									<option value="query5">Suche nach Nachnamen</option>
+									<option value="query6">Suche nach Vornamen</option>
 								</select>
 							</div>
 						</div>
@@ -159,8 +156,6 @@
 							<th data-sortable="true">Position</th>
 							<th data-sortable="true">Alter</th>
 							<th data-sortable="true">Trainingszeiten</th>
-							<span sec:authorize="hasRole('ROLE_ADMIN' or 'ROLE_PLAYER')">
-							<th>Actions</th>
 							
 							
 						</tr>
@@ -174,18 +169,23 @@
 							<td th:text="${player.position}"></td>
 							<td th:text="${player.age}"></td>
 							<td th:text="${player.availabelTrainingDays}"></td>
+							<!-- <td sec:authorize="hasRole('ROLE_ADMIN')"> -->
 							
-							<!--  <span sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_PLAYER')"> -->
-							<td><a th:href="@{/editPlayer(playerId=${player.playerId})}"
-								class="btn btn-xs btn-success"> <span sec:authorize="hasRole('ROLE_ADMIN' or 'ROLE_PLAYER')"
-									class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-									Bearbeiten
-									</a></td></span>
-									
-
+							<td>
+							<a sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_PLAYER)" th:href="@{/editPlayer(playerId=${player.playerId})}">
+									<button type="button" class="btn btn-xs btn-success">
+										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+										Bearbeiten
+									</button>
+							</a></td>
 							
-							<td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/delete(id=${player.playerId})}">Delete</a></td>
-				
+							<td>
+							<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/deletePlayer(id=${player.playerId})}">
+									<button type="button" class="btn btn-xs btn-danger">
+										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+										L&ouml;schen
+									</button>
+							</a></td>
 						</tr>
 						<!--  list all items ----------------------------------------------------------- -->
 					</tbody>

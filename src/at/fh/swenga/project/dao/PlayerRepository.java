@@ -24,7 +24,10 @@ public interface PlayerRepository extends JpaRepository<PlayerModel, Integer> {
 	
 	List<PlayerModel>findByAvailabelTrainingDays (String availabelTrainingDays);
 	
-	List<PlayerModel>findByPlayerId (int playerId);
+	public int findByAge(String searchString);
+	
+	public List<PlayerModel> findByAge(int age);
+
 
 	}
 
