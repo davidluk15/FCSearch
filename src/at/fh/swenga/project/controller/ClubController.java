@@ -61,8 +61,7 @@ public class ClubController {
       return listClubs(model);
      
     }
-	
-	//#############################################
+
 
 	@RequestMapping(value = {"editClub"})
 	public String editClub(Model model, @RequestParam int clubId, ClubModel clubModel) {
@@ -131,7 +130,7 @@ public class ClubController {
 				
 			
 			
-			String[] clubs = {"LOK Graz - Die Überspitzen","Eggenberg 04 - Vinko-Verpackung","Club Graz 05 - Oranje","Eggenberg 04 - FC Fortuna","ATV Graz - Eggenberg 04","LOK Graz - Peggau Calcio 13","Peggau Calcio 13 - Club Graz 05"};
+			String[] clubs = {"LOK Graz", "Die Überspitzen","Eggenberg 04", "Vinko-Verpackung","Club Graz 05", "Oranje","Eggenberg 04","FC Fortuna","ATV Graz","Eggenberg 04","LOK Graz","Peggau Calcio 13","Peggau Calcio 13", "Club Graz 05"};
 			String[] days = {"Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag"};
 			String[] time = {"17:00","17:30","18:00","18:30","19:00","19:30","20:00"};
 			String[] sponsoren = {"Heineken","Puntigamer","Jägermeister","Murauer","Gösser","Jägermeister-Winterkräuter","Egger-Märzen"};
@@ -151,7 +150,41 @@ public class ClubController {
 		return "forward:listClubs";
 	
 	}
+	//########################################
 	
+	
+	@RequestMapping(value = { "/findClubs" })
+	public String find(Model model, @RequestParam String searchString, @RequestParam String searchType) {
+		List<ClubModel> clubs = null;
+		int count = 0;
+
+		switch (searchType) {
+		case "query1":
+			clubs = clubRepository.findAll();
+			break;
+		case "query2":
+			clubs = clubRepository.findByLocation(searchString);
+			break;
+		case "query3":
+			clubs = clubRepository.findByTrainingDays(searchString);
+			break;
+		case "query4":
+			clubs = clubRepository.findByTrainingTime(searchString);
+			break;
+	
+		default:
+			clubs = clubRepository.findAll();
+		}
+
+		model.addAttribute("clubs", clubs);
+
+		if (clubs != null) {
+			model.addAttribute("count", clubs.size());
+		} else {
+			model.addAttribute("count", count);
+		}
+		return "listClubs";
+	}
 	
 	//#############################################
 
