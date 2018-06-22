@@ -48,7 +48,7 @@ by Jagermeister
 
 * Testing Phase  
 	> Filling the database with objects  
-	> Testing of the different features (rating, commenting)  
+
    
    
 * Presenting Phase  
