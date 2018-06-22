@@ -39,7 +39,7 @@
 							<label for="inputFirstName" class="col-md-2 control-label">Vorname</label>
 							<div class="col-md-10">
 								<input class="form-control" id="inputFirstName" type="text"
-									name="firtsName" th:value="${player} ? ${player.firstName}">
+									name="firstName" th:value="${player} ? ${player.firstName}">
 							</div>
 						</div>
 						<!-- --------------  Nachname ---------------- -->
@@ -71,7 +71,7 @@
 						
 						<!-- --------------  availabelTrainingDays ---------------- -->
 						<div class="form-group">
-							<label for="inputAvailabelTrainingDays" class="col-md-2 control-label">Verfügbare Trainingstage</label>
+							<label for="inputAvailabelTrainingDays" class="col-md-2 control-label">Trainingstage</label>
 							<div class="col-md-10">
 								<input class="form-control" id="inputAvailabelTrainingDays" type="text"
 									name="availabelTrainingDays" th:value="${player} ? ${player.availabelTrainingDays}">

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 import at.fh.swenga.project.dao.PlayerRepository;
 import at.fh.swenga.project.model.PlayerModel;
 
@@ -28,7 +29,7 @@ public class PlayerController {
 	
 
 	
-	@RequestMapping(value = { "/listPlayers" })
+	/*@RequestMapping(value = { "/listPlayers" })
 	public String showAllPlayers(Model model) {
 			
 		
@@ -36,7 +37,7 @@ public class PlayerController {
 		model.addAttribute("entries", entries);
 	
 		return "listPlayers";
-	}
+	}*/
 	
 	
 	@RequestMapping(value = { "/find" })
@@ -107,6 +108,16 @@ public class PlayerController {
 	}
 	
 	
+	@RequestMapping(value = { "/listPlayers" })
+	public String listPlayers(Model model) {
+	List<PlayerModel> players = playerRepository.findAll();
+	model.addAttribute("players", players);
+	return "listPlayers";
+	
+	}
+	
+	
+	
 	
 	@RequestMapping(value = {"addPlayer"}, method = RequestMethod.GET)
 	public String showAddPlayer(Model model) {
@@ -118,17 +129,16 @@ public class PlayerController {
 	}
 	
 	@RequestMapping(value = "addPlayer", method = RequestMethod.POST)
-    public String addEntry( PlayerModel playerModelForm, BindingResult bindingResult, Model model) 
+    public String addEntry( PlayerModel newPlayerModel, BindingResult bindingResult, Model model) 
 	{
 		
 		//System.out.println(playerModelForm.getFirstName());
         if (bindingResult.hasErrors()) {
-            return "addEditPlayer";
+            return "listPlayers";
         }
         
-      playerRepository.save(playerModelForm);
-      
-      return showAddPlayer(model);
+      playerRepository.save(newPlayerModel);
+      return listPlayers(model);
      
     }
 	
