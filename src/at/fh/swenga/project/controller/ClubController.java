@@ -43,6 +43,12 @@ public class ClubController {
 		return "editClub";
 	}
 	
+	@RequestMapping(value = {"editClub"})
+	public String showEditClub(Model model) {
+		
+		return "editClub";
+	}
+	
 	@RequestMapping("/deleteClub")
 	public String deleteClub(Model model, @RequestParam int id) {
 		clubRepository.deleteById(id);
