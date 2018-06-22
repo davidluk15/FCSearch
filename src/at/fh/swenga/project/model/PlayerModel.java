@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+
+
 @Entity
 @Table(name = "Player")
 
@@ -142,7 +144,6 @@ public class PlayerModel implements java.io.Serializable {
 			return false;
 		return true;
 	}
-	
 	
 	
 	
