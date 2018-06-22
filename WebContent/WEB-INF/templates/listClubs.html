@@ -175,17 +175,17 @@
 							<th data-sortable="true">Trainingszeit</th>
 							<th data-sortable="true">Sponsoren</th>
 							<th data-sortable="true">Gruendungsjahr</th>
-							<th>Actions</th>
+							
 						</tr>
 					</thead>
 					<tbody>
 						<!--  list all items ----------------------------------------------------------- -->
-						<tr th:each="club : ${club}">
+						<tr th:each="club : ${clubs}">
 							<td th:text="${club.clubId}"></td>
 							<td th:text="${club.clubName}"></td>
 							<td th:text="${club.location}"></td>
-							<td th:text="${club.trainingsDays}"></td>
-							<td th:text="${club.trainingsTime}"></td>
+							<td th:text="${club.trainingDays}"></td>
+							<td th:text="${club.trainingTime}"></td>
 							<td th:text="${club.sponsor}"></td>
 							<td th:text="${club.foundingYear}"></td>
 							<!-- <td sec:authorize="hasRole('ROLE_ADMIN')"> -->
@@ -210,13 +210,15 @@
 				</table>
 			</div>
 		</div>
+		
+		<!--  Search + Fill ----------------------------------------------------------- 
 		<form th:action="@{/logout}" method="post">
 			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 			
 			<input class="btn btn-xs btn-danger"type="submit" value="Logout" />
 		</form>
 	</div>
-
+---------------->
 	<!--  End of container -->
 	<div th:replace="~{includes/bootstrapJS :: bootstrapJS}" />
 </body>
