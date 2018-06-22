@@ -6,8 +6,10 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.fluttercode.datafactory.impl.DataFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import at.fh.swenga.project.dao.ClubRepository;
 import at.fh.swenga.project.model.ClubModel;
+import at.fh.swenga.project.model.PlayerModel;
 
 @Controller
 public class ClubController {
@@ -112,6 +115,43 @@ public class ClubController {
 
 		return "forward:listClubs";
 	}
+	
+	
+	@RequestMapping("/fillClubsList")
+	@Transactional
+	public String fillData(Model model) {
+
+		DataFactory df = new DataFactory();
+		
+
+		
+		
+		for(int i=0;i<100;i++) {
+			if (i%10==0) {
+				
+			
+			
+			String[] clubs = {"LOK Graz - Die Überspitzen","Eggenberg 04 - Vinko-Verpackung","Club Graz 05 - Oranje","Eggenberg 04 - FC Fortuna","ATV Graz - Eggenberg 04","LOK Graz - Peggau Calcio 13","Peggau Calcio 13 - Club Graz 05"};
+			String[] days = {"Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag"};
+			String[] time = {"17:00","17:30","18:00","18:30","19:00","19:30","20:00"};
+			String[] sponsoren = {"Heineken","Puntigamer","Jägermeister","Murauer","Gösser","Jägermeister-Winterkräuter","Egger-Märzen"};
+
+
+
+
+			
+			ClubModel clubModel = new ClubModel(df.getItem(clubs),df.getStreetName(),df.getItem(days),df.getLastName(),df.getItem(time),df.getItem(sponsoren),df.getNumberBetween(1888, 2005));
+			
+	
+			clubRepository.save(clubModel);
+		}
+	
+		
+	}
+		return "forward:listClubs";
+	
+	}
+	
 	
 	//#############################################
 
