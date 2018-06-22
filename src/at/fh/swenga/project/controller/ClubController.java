@@ -26,46 +26,44 @@ public class ClubController {
 
 	@Autowired
 	ClubRepository clubRepository;
-	
-	
+
 	@RequestMapping(value = { "/listClubs" })
 	public String listClubs(Model model) {
-	List<ClubModel> clubs = clubRepository.findAll();
-	model.addAttribute("clubs", clubs);
-	return "listClubs";
-	
-	}
-	
-	
-	@RequestMapping(value = {"addClub"}, method = RequestMethod.GET)
-	public String showAddPlayer(Model model) {
-		
 		List<ClubModel> clubs = clubRepository.findAll();
 		model.addAttribute("clubs", clubs);
-				
+		return "listClubs";
+
+	}
+
+	@RequestMapping(value = { "addClub" }, method = RequestMethod.GET)
+	public String showAddPlayer(Model model) {
+
+		List<ClubModel> clubs = clubRepository.findAll();
+		model.addAttribute("clubs", clubs);
+
 		return "addEditClub";
 	}
-	
-	
+
 	@RequestMapping(value = "addClub", method = RequestMethod.POST)
-    public String addEntry( ClubModel newClubModel, BindingResult bindingResult, Model model) 
-	{
-		
-		//System.out.println(playerModelForm.getFirstName());
-        if (bindingResult.hasErrors()) {
-            return "listPlayers";
-        }
-        
-      clubRepository.save(newClubModel);
-      return listClubs(model);
-     
-    }
-	
+	public String addEntry(ClubModel newClubModel, BindingResult bindingResult, Model model) {
+
+		// System.out.println(playerModelForm.getFirstName());
+		if (bindingResult.hasErrors()) {
+			return "listClubs";
+		}
+
+		clubRepository.save(newClubModel);
+		return listClubs(model);
+
+	}
+
 	@RequestMapping(value = { "contact" })
 	public String register(Model model) {
-		
+
 		return "contact";
-}
+	}
+
+
 
 	@ExceptionHandler(Exception.class)
 	public String handleAllException(Exception ex) {
@@ -73,6 +71,5 @@ public class ClubController {
 		return "error";
 
 	}
-	
-	
+
 }
