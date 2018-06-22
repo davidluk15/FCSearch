@@ -27,18 +27,14 @@ public class PlayerController {
 		return "index";
 	}
 	
+	@RequestMapping(value = { "/listPlayers" })
+	public String listPlayers(Model model) {
+	List<PlayerModel> players = playerRepository.findAll();
+	model.addAttribute("players", players);
+	return "listPlayers";
+	
+	}
 
-	
-	/*@RequestMapping(value = { "/listPlayers" })
-	public String showAllPlayers(Model model) {
-			
-		
-		List<PlayerModel> entries = playerRepository.findAll();
-		model.addAttribute("entries", entries);
-	
-		return "listPlayers";
-	}*/
-	
 	
 	@RequestMapping(value = { "/find" })
 	public String find(Model model, @RequestParam String searchString, @RequestParam String searchType) {
@@ -108,13 +104,7 @@ public class PlayerController {
 	}
 	
 	
-	@RequestMapping(value = { "/listPlayers" })
-	public String listPlayers(Model model) {
-	List<PlayerModel> players = playerRepository.findAll();
-	model.addAttribute("players", players);
-	return "listPlayers";
-	
-	}
+
 	
 	
 	
@@ -122,8 +112,8 @@ public class PlayerController {
 	@RequestMapping(value = {"addPlayer"}, method = RequestMethod.GET)
 	public String showAddPlayer(Model model) {
 		
-		List<PlayerModel> entries = playerRepository.findAll();
-		model.addAttribute("entries", entries);
+		List<PlayerModel> players = playerRepository.findAll();
+		model.addAttribute("players", players);
 				
 		return "addEditPlayer";
 	}
