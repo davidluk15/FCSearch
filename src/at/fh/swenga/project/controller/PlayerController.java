@@ -60,39 +60,12 @@ public class PlayerController {
 			players = playerRepository.findByAge(Integer.parseInt(searchString));
 			break;
 		case "query5":
-			// employees = employeeRepository.findByFirstOrLastNameZwei(searchString);
+			players = playerRepository.findByLastName(searchString);
 			break;
 		case "query6":
-			// count = employeeRepository.countByLastName(searchString);
+			players = playerRepository.findByFirstName(searchString);
 			break;
-		case "query7":
-			// employees = employeeRepository.removeByLastName(searchString);
-			break;
-		case "query8":
-			// employees = employeeRepository.;
-			break;
-		case "query9":
-			// employees =
-			// employeeRepository.findByLastNameContainingIgnoreCaseOrFirstNameContainingIgnoreCase(searchString,searchString);
-			break;
-		case "query10":
-			// employees = employeeRepository.;
-			break;
-		case "query11":
-			// employees = employeeRepository.;
-			break;
-		case "query12":
-			// employees = employeeRepository.;
-			break;
-		case "query13":
-			// employees = employeeRepository.;
-			break;
-		case "query14":
-			// employees = employeeRepository.;
-			break;
-		case "query15":
-			// employees = employeeRepository.;
-			break;
+		
 
 		default:
 			players = playerRepository.findAll();
