@@ -105,12 +105,6 @@ public class PlayerController {
 		return "index";
 	}
 	
-	
-
-	
-	
-	
-	
 	@RequestMapping(value = {"addPlayer"}, method = RequestMethod.GET)
 	public String showAddPlayer(Model model) {
 		
