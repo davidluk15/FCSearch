@@ -1,3 +1,4 @@
+
 package at.fh.swenga.project.controller;
 
 import java.util.List;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import at.fh.swenga.project.dao.ClubRepository;
 import at.fh.swenga.project.model.ClubModel;
-import at.fh.swenga.project.model.PlayerModel;
 
 @Controller
 public class ClubController {
@@ -104,6 +104,14 @@ public class ClubController {
 		}
 
 		}
+	
+	
+	@RequestMapping("/deleteClub")
+	public String deleteClub(Model model, @RequestParam int clubId) {
+		clubRepository.deleteById(clubId);;
+
+		return "forward:listClubs";
+	}
 	
 	//#############################################
 
