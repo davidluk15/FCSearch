@@ -26,12 +26,55 @@
     <![endif]-->
 </head>
 <body>
+
+<!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index">FCSearch</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                     <li>
+                        <a href="#"> &Uuml;ber uns</a>
+                    </li>
+                    <li>
+                        <a href="listClubs">Vereine</a>
+                    </li>
+                    <li>
+                        <a href="listPlayers">Spieler</a>
+                    </li>
+                    <li>
+                        <a href="contact">Kontakt</a>
+                    </li>
+                    <li style="position:absolute;right:50px;">
+                        <a href="login">Login</a>
+                    </li>
+                    <li style="position:absolute;right:100px;">
+                        <a href="register">Registrieren</a>
+                    </li>
+                </ul>
+            </div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+<!-- /Navigation -->
+
 	<div class="container" role="main">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				<form class="form-horizontal" method="post" th:action="${player} ? @{/editPlayer} : @{addPlayer}">
 					<fieldset>
-						<legend th:text="${player}? 'Change player' : 'New player'">New Player</legend>
+						<legend th:text="${player}? 'Change player' : 'New player'">Neuen Spieler erstellen</legend>
 
 
 						<!-- --------------  Vorname ---------------- -->
@@ -86,9 +129,9 @@
 						<!-- --------------  buttons ---------------- -->
 						<div class="form-group">
 							<div class="col-md-10 col-md-offset-2">
-								<button type="submit" class="btn btn-primary">Submit</button>
+								<button type="submit" class="btn btn-primary">Speichern</button>
 								<a href="listPlayers">
-									<button type="button" class="btn btn-default">Cancel</button>
+									<button type="button" class="btn btn-default">Abbrechen</button>
 								</a>
 							</div>
 						</div>

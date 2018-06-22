@@ -7,8 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import at.fh.swenga.project.dao.UserRepository;
-import at.fh.swenga.project.dao.UserRoleRepository;
+import at.fh.swenga.project.dao.UserDao;
+import at.fh.swenga.project.dao.UserRoleDao;
 import at.fh.swenga.project.model.UserModel;
 import at.fh.swenga.project.model.UserRoleModel;
 
@@ -16,10 +16,10 @@ import at.fh.swenga.project.model.UserRoleModel;
 public class SecurityController {
  
 	@Autowired
-	UserRepository userRepository;
+	UserDao userDao;
  
 	@Autowired
-	UserRoleRepository userRoleRepository;
+	UserRoleDao userRoleDao;
 	
 	@RequestMapping(value = { "/", "index" })
 	public String index(Model model) {
@@ -31,15 +31,15 @@ public class SecurityController {
 	@Transactional
 	public String fillData(Model model) {
  
-		UserRoleModel adminRole = userRoleRepository.getRole("ROLE_ADMIN");
+		UserRoleModel adminRole = userRoleDao.getRole("ROLE_ADMIN");
 		if (adminRole == null)
 			adminRole = new UserRoleModel("ROLE_ADMIN");
  
-		UserRoleModel playerRole = userRoleRepository.getRole("ROLE_PLAYER");
+		UserRoleModel playerRole = userRoleDao.getRole("ROLE_PLAYER");
 		if (playerRole == null)
 			playerRole = new UserRoleModel("ROLE_PLAYER");
 		
-		UserRoleModel clubRole = userRoleRepository.getRole("ROLE_CLUB");
+		UserRoleModel clubRole = userRoleDao.getRole("ROLE_CLUB");
 		if (clubRole == null)
 			clubRole = new UserRoleModel("ROLE_CLUB");
  
@@ -48,17 +48,17 @@ public class SecurityController {
 		admin.addUserRole(playerRole);
 		admin.addUserRole(clubRole);
 		admin.addUserRole(adminRole);
-		userRepository.persist(admin);
+		userDao.persist(admin);
  
 		UserModel player = new UserModel("player", "password", true);
 		player.encryptPassword();
 		player.addUserRole(playerRole);
-		userRepository.persist(player);
+		userDao.persist(player);
 		
 		UserModel club = new UserModel("club", "password", true);
 		club.encryptPassword();
 		club.addUserRole(clubRole);
-		userRepository.persist(club);
+		userDao.persist(club);
  
 		return "forward:login";
 	}

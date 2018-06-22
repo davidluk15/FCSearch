@@ -27,7 +27,47 @@
 </head>
 
 <body>
-
+<!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index">FCSearch</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                     <li>
+                        <a href="#"> &Uuml;ber uns</a>
+                    </li>
+                    <li>
+                        <a href="listClubs">Vereine</a>
+                    </li>
+                    <li>
+                        <a href="listPlayers">Spieler</a>
+                    </li>
+                    <li>
+                        <a href="contact">Kontakt</a>
+                    </li>
+                    <li style="position:absolute;right:50px;">
+                        <a href="login">Login</a>
+                    </li>
+                    <li style="position:absolute;right:100px;">
+                        <a href="register">Registrieren</a>
+                    </li>
+                </ul>
+            </div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+<!-- /Navigation -->
 
 
 	<!-- Page Content -->
@@ -35,25 +75,23 @@
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
 				<form th:action="@{/login}" method="post">
-					<h2 class="form-signin-heading">Please sign in</h2>
+					<h2 class="form-signin-heading">Anmeldung</h2>
 
-					<div th:if="${param.error}" class="alert alert-danger">Invalid
-						username and password.</div>
+					<div th:if="${param.error}" class="alert alert-danger">Ung&uuml;ltiger Benutzername oder Passwort</div>
 
-					<div th:if="${param.logout}" class="alert alert-success">You
-						have been logged out.</div>
+					<div th:if="${param.logout}" class="alert alert-success">Sie wurden erfolgreich ausgeloggt</div>
 
-					<label for="inputEmail" class="sr-only">Email address</label> <input
-						type="text" id="username" class="form-control" placeholder="User"
+					<label for="inputEmail" class="sr-only">Benutzername</label> <input
+						type="text" id="username" class="form-control" placeholder="Benutzername"
 						required autofocus name="username"> <label
-						for="inputPassword" class="sr-only">Password</label> <input
+						for="inputPassword" class="sr-only">Passwort</label> <input
 						type="password" id="password" class="form-control"
-						placeholder="Password" required name="password">
+						placeholder="Passwort" required name="password">
 
 					<div class="form-group">
 						<div class="col-md-10 col-md-offset-2">
 							<button class="btn btn-default" type="submit">
-								Sign in</button>
+								Anmelden</button>
 							<a href="index">
 								<button type="button" class="btn btn-default">Cancel</button>
 							</a>
