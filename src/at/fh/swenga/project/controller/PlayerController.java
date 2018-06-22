@@ -21,11 +21,11 @@ public class PlayerController {
 	@Autowired
 	PlayerRepository playerRepository;
 	
-	@RequestMapping(value = { "/", "index" })
-	public String index(Model model) {
+//	@RequestMapping(value = { "/", "index" })
+	//public String index(Model model) {
 		
-		return "index";
-	}
+		//return "index";
+	//}
 	
 	@RequestMapping(value = { "/listPlayers" })
 	public String listPlayers(Model model) {

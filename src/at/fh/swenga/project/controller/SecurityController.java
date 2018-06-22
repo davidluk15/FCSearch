@@ -20,6 +20,12 @@ public class SecurityController {
  
 	@Autowired
 	UserRoleRepository userRoleRepository;
+	
+	@RequestMapping(value = { "/", "index" })
+	public String index(Model model) {
+		
+		return "index";
+	}
  
 	@RequestMapping("/fillUsers")
 	@Transactional

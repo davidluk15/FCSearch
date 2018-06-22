@@ -13,13 +13,16 @@
 		<intercept-url pattern="/login" access="permitAll" />
 		<intercept-url pattern="/fillUsers" access="permitAll" />
 		<intercept-url pattern="/images/**" access="permitAll" />
+		<intercept-url pattern="/index" access="permitAll" />
 		
 		<intercept-url pattern="/editClub" access="hasRole('ADMIN') or hasRole('CLUB')" />
 		<intercept-url pattern="/editPlayer" access="hasRole('ADMIN') or hasRole('PLAYER')" />
+		<intercept-url pattern="/addPlayer" access="hasRole('ADMIN') or hasRole('PLAYER')" />
+		<intercept-url pattern="/addClub" access="hasRole('ADMIN') or hasRole('CLUB')" />
 
 		<!-- intercept-url pattern="/**" access="hasRole('USER')" / -->
 		<!-- intercept-url pattern="/**" access="hasRole('USER') or hasRole('ADMIN')" / -->
-		<intercept-url pattern="/**" access="authenticated" />
+		<intercept-url pattern="/" access="permitAll" />
 		<intercept-url pattern="/delete" access="hasRole('ADMIN')" />
 
 		<form-login login-page="/login" default-target-url='/' always-use-default-target='true' />
