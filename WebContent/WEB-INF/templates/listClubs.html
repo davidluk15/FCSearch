@@ -92,44 +92,23 @@
 
 		
 		
-		<!--  search by Id ----------------------------------------------------------- -->
 		
-		<div class="row">
-			<div class="col-md-12">
-			<span sec:authorize="hasRole('ROLE_ADMIN')">
-				<form class="form-horizontal" action="findById" method="post">
-					<div class="form-group">
-						<label class="control-label col-md-2" for="id">
-						<span aria-hidden="true"></span>
-						Suchen nach ClubID:</label>
-						<div class="col-md-5">
-					 		<input type="text" name="id">
-						</div>
-						<span aria-hidden="true"></span>
-						<div class="col-md-5">
-					  		<input class="btn btn-default" type="submit" value="Los!">
-						</div>
-								
-					</div>		
-				</form>
-			</span>
-			</div>
-		</div>
 
-		<hr>
+	
 
 
 		<!--  Search + Fill ----------------------------------------------------------- -->
 			<div class="row">
 				<div class="col-md-12">
-					<form class="form-horizontal" method="post" action="find">
+					<form class="form-horizontal" method="post" action="findClubs">
 						<div class="form-group">
 							<label class="control-label col-md-2" for="searchType">Suche:</label> 
 							<div class="col-md-5">
 								<select name="searchType">
-									<option value="query1" selected="selected">Nach Vereinsnamen suchen:</option>							
-									<option value="query2">Nach Trainingstag sortieren</option>
-									<option value="query3">Nach Trainer suchen:</option>
+									<option value="query1" selected="selected">Zeige alle Vereine</option>	
+									<option value="query2">Suche nach Ort</option>															
+									<option value="query3">Suche nach Trainingstage</option>
+									<option value="query4">Suche nach Trainingszeiten</option>
 								</select>
 							</div>
 						</div>
@@ -192,14 +171,14 @@
 							<td th:text="${club.trainingTime}"></td>
 							<td th:text="${club.sponsor}"></td>
 							<td th:text="${club.foundingYear}"></td>
-							
+							<td>
 							<a sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_CLUB)" th:href="@{/editClub(clubId=${club.clubId})}">
 									<button type="button" class="btn btn-xs btn-success">
-										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+										<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 										Bearbeiten
 									</button>
 							</a></td>
-							
+							<td>
 							<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/deleteClub(clubId=${club.clubId})}">
 									<button type="button" class="btn btn-xs btn-danger">
 										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
@@ -207,7 +186,7 @@
 									</button>
 							</a>
 							
-							
+							</td>
 						</tr>
 						<!--  list all items ----------------------------------------------------------- -->
 					</tbody>
