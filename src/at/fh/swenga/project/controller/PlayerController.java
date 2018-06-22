@@ -5,8 +5,10 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.fluttercode.datafactory.impl.DataFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 import at.fh.swenga.project.dao.PlayerRepository;
 import at.fh.swenga.project.model.PlayerModel;
@@ -168,6 +171,37 @@ public class PlayerController {
 		}
 
 		}
+	
+	
+	@RequestMapping("/fillPlayerList")
+	@Transactional
+	public String fillData(Model model) {
+
+		DataFactory df = new DataFactory();
+		
+
+		
+		
+		for(int i=0;i<100;i++) {
+			if (i%10==0) {
+				
+			
+			
+			String[] position = {"St\u00fcrmer","Innenverteidiger","Torwart","Rechter Verteidiger","Linker Verteidiger","Defensives Mittelfeld","Offensives Mittelfeld","Rechtsaußen","Linksaußen"};
+			String[] days = {"Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag"};
+
+			
+			PlayerModel playerModel = new PlayerModel(df.getFirstName(),df.getLastName(),df.getItem(position),df.getNumberBetween(15, 60),df.getItem(days));
+	
+			playerRepository.save(playerModel);
+		}
+	
+		
+	}
+		return "forward:listPlayers";
+	
+	}
+	
 	
 
 
