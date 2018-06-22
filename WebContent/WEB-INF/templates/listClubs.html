@@ -43,7 +43,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                      <li>
-                        <a href="#">Über uns</a>
+                        <a href="#"> &Uuml;ber uns</a>
                     </li>
                     <li>
                         <a href="listClubs">Vereine</a>
@@ -52,7 +52,7 @@
                         <a href="listPlayers">Spieler</a>
                     </li>
                     <li>
-                        <a href="#">Kontakt</a>
+                        <a href="contact">Kontakt</a>
                     </li>
                     <li style="position:absolute;right:50px;">
                         <a href="login">Login</a>
@@ -62,14 +62,16 @@
                     </li>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+<!-- /Navigation -->
+
 	<div class="container" role="main">
 
 		<div class="page-header">
-			<h1>Clubs</h1>
+			<h1>Vereine</h1>
 		</div>
 
 		<!--  Error message ----------------------------------------------------------- -->
@@ -100,7 +102,7 @@
 					 		<input type="text" name="id">
 						</div>
 						<div class="col-md-5">
-					  		<input class="btn btn-default" type="submit" value="Do it">
+					  		<input class="btn btn-default" type="submit" value="Los!">
 						</div>		
 					</div>		
 				</form>
@@ -115,7 +117,7 @@
 				<div class="col-md-12">
 					<form class="form-horizontal" method="post" action="find">
 						<div class="form-group">
-							<label class="control-label col-md-2" for="searchType">Search:</label> 
+							<label class="control-label col-md-2" for="searchType">Suche:</label> 
 							<div class="col-md-5">
 								<select name="searchType">
 									<option value="query1" selected="selected">Show all series</option>							
@@ -130,12 +132,12 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-md-2" for="searchString">SearchString:</label>
+							<label class="control-label col-md-2" for="searchString">SuchParameter:</label>
 						<div class="col-md-5">
 					 		<input type="text" name="searchString"> 
 						</div>
 						<div class="col-md-5">
-					  		<input class="btn btn-default" type="submit" value="Do it">
+					  		<input class="btn btn-default" type="submit" value="Los!">
 						</div>		
 					</div>	
 				</form>
@@ -149,13 +151,13 @@
 		<div class="row">
 			<div class="col-md-4 col-md-offset-5">
 				<p>
-					<!-- <span sec:authorize="hasRole('ROLE_ADMIN')">  -->
+					<span sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_CLUB')"> 
 					<a href="addClub">
 						<button type="button" class="btn btn-success">Neuen Verein hinzufügen</button>
 							</a></span>	
 							
 							<a href="fillClubsList">
-						<button type="button" class="btn btn-success">Fill List</button>
+						<button type="button" class="btn btn-success">Testdaten einf&uuml;gen</button>
 					</a>
 				</p>
 			</div>
@@ -193,7 +195,7 @@
 							<a th:href="@{/deleteClub(clubId=${club.clubId})}">
 									<button type="button" class="btn btn-xs btn-danger">
 										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-										Delete
+										L&ouml;schen
 									</button>
 							</a>
 							
@@ -201,7 +203,7 @@
 							<a th:href="@{/editClub(clubId=${club.clubId})}">
 									<button type="button" class="btn btn-xs btn-success">
 										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-										Edit
+										bearbeiten
 									</button>
 							</a></td>
 						</tr>

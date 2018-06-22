@@ -45,7 +45,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                      <li>
-                        <a href="#">Über uns</a>
+                        <a href="#"> &Uuml;ber uns</a>
                     </li>
                     <li>
                         <a href="listClubs">Vereine</a>
@@ -54,7 +54,7 @@
                         <a href="listPlayers">Spieler</a>
                     </li>
                     <li>
-                        <a href="#">Kontakt</a>
+                        <a href="contact">Kontakt</a>
                     </li>
                     <li style="position:absolute;right:50px;">
                         <a href="login">Login</a>
@@ -68,6 +68,7 @@
 		</div>
 		<!-- /.container -->
 	</nav>
+<!-- /Navigation -->
 
 	<!-- Page Content -->
 
@@ -77,45 +78,20 @@
 				<form th:action="@{/register}" method="post">
 					<h2 class="form-signin-heading">Registrieren</h2>
 					<div th:if="${param.error}" class="alert alert-danger">
-						Ungültiger Benutzername oder Passwort.</div>
+						Ung&uuml;ltiger Benutzername oder Passwort.</div>
 					<div th:if="${param.logout}" class="alert alert-success">Sie wurden ausgeloggt.</div>
 
 					<label for="inputFirstname" class="sr-only">Vorname</label> <input
 						type="text" id="firstname" class="form-control"
-						placeholder="Firstname" required autofocus name="firstname">
+						placeholder="Vorname" required autofocus name="firstname">
 
 					<label for="inputLastname" class="sr-only">Nachname</label> <input
 						type="text" id="lastname" class="form-control"
-						placeholder="Lastname">
-
-
-					<div class="register-form-row">
-						<div class="register-form-row-col">Geburtstag :</div>
-						<div class="register-form-row-col">
-							Month :<select name="month" onchange="call()">
-								<option value="">select</option>
-								<option value="1">Jan</option>
-								<option value="2">Feb</option>
-								<option value="3">Mar</option>
-								<option value="4">Apr</option>
-								<option value="5">Mai</option>
-								<option value="6">Jun</option>
-								<option value="7">Jul</option>
-								<option value="8">Aug</option>
-								<option value="9">Sep</option>
-								<option value="10">Okt</option>
-								<option value="11">Nov</option>
-								<option value="12">Dez</option>
-							</select> Tag :<select name="day">
-								<option value="">auswahl</option>
-							</select> Jahr:<select name="year" onchange="call()">
-								<option value="">auswahl</option>
-							</select>
-						</div>
-					</div>
+						placeholder="Nachname">
+						
 					<label for="inputPassword" class="sr-only">Passwort</label> <input
 						type="text" id="password" class="form-control"
-						placeholder="Password">
+						placeholder="Passwort">
 
 					<button class="btn btn-lg btn-primary btn-block" type="submit">Anmelden</button>
 				</form>
