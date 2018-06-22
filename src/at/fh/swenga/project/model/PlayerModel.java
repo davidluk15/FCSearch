@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
 @Table(name = "Player")
@@ -33,6 +34,9 @@ public class PlayerModel implements java.io.Serializable {
 	
 	@Column(nullable = false, length = 30)
 	private String availabelTrainingDays;
+	
+	@Version
+	long version;
 
 	@ManyToOne (cascade = CascadeType.PERSIST)
 	private ClubModel club;
@@ -92,6 +96,14 @@ public class PlayerModel implements java.io.Serializable {
 	}
 
 
+
+	public long getVersion() {
+		return version;
+	}
+
+	public void setVersion(long version) {
+		this.version = version;
+	}
 
 	public String getAvailabelTrainingDays() {
 		return availabelTrainingDays;
