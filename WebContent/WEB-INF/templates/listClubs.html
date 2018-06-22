@@ -94,25 +94,23 @@
 		
 		<!--  search by Id ----------------------------------------------------------- -->
 		
-		<div class="row">
+		<div class="row" >
 			<div class="col-md-12">
-			<span sec:authorize="hasRole('ROLE_ADMIN')">
+			
 				<form class="form-horizontal" action="findById" method="post">
 					<div class="form-group">
 						<label class="control-label col-md-2" for="id">
-						<span aria-hidden="true"></span>
 						Suchen nach ClubID:</label>
 						<div class="col-md-5">
 					 		<input type="text" name="id">
 						</div>
-						<span aria-hidden="true"></span>
 						<div class="col-md-5">
 					  		<input class="btn btn-default" type="submit" value="Los!">
 						</div>
 								
 					</div>		
 				</form>
-			</span>
+
 			</div>
 		</div>
 
@@ -193,6 +191,7 @@
 							<td th:text="${club.sponsor}"></td>
 							<td th:text="${club.foundingYear}"></td>
 							
+							<td>
 							<a sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_CLUB)" th:href="@{/editClub(clubId=${club.clubId})}">
 									<button type="button" class="btn btn-xs btn-success">
 										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
@@ -200,12 +199,13 @@
 									</button>
 							</a></td>
 							
+							<td>
 							<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/deleteClub(clubId=${club.clubId})}">
 									<button type="button" class="btn btn-xs btn-danger">
 										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 										L&ouml;schen
 									</button>
-							</a>
+							</a></td>
 							
 							
 						</tr>

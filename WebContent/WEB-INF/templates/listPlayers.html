@@ -92,22 +92,7 @@
 
 
 		
-		<!--  search by Id ----------------------------------------------------------- -->
-		<div class="row">
-			<div class="col-md-12">
-				<form class="form-horizontal" action="findByPlayerId" method="post"> <!-- KEINE AHNUNG OB RICHTIGE ACTION -->
-					<div class="form-group">
-						<label class="control-label col-md-2" for="id">Find by Id:</label>
-						<div class="col-md-5">
-					 		<input type="text" name="id">
-						</div>
-						<div class="col-md-5">
-					  		<input class="btn btn-default" type="submit" value="Los!">
-						</div>		
-					</div>		
-				</form>
-			</div>
-		</div>
+
 
 		<hr>
 
@@ -174,6 +159,8 @@
 							<th data-sortable="true">Position</th>
 							<th data-sortable="true">Alter</th>
 							<th data-sortable="true">Trainingszeiten</th>
+							<span sec:authorize="hasRole('ROLE_ADMIN' or 'ROLE_PLAYER')">
+							<th>Actions</th>
 							
 							
 						</tr>
@@ -187,23 +174,18 @@
 							<td th:text="${player.position}"></td>
 							<td th:text="${player.age}"></td>
 							<td th:text="${player.availabelTrainingDays}"></td>
-							<!-- <td sec:authorize="hasRole('ROLE_ADMIN')"> -->
 							
-							<td>
-							<a sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_PLAYER)" th:href="@{/editPlayer(playerId=${player.playerId})}">
-									<button type="button" class="btn btn-xs btn-success">
-										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-										Bearbeiten
-									</button>
-							</a></td>
+							<!--  <span sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_PLAYER')"> -->
+							<td><a th:href="@{/editPlayer(playerId=${player.playerId})}"
+								class="btn btn-xs btn-success"> <span sec:authorize="hasRole('ROLE_ADMIN' or 'ROLE_PLAYER')"
+									class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+									Bearbeiten
+									</a></td></span>
+									
+
 							
-							<td>
-							<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/deletePlayer(id=${player.playerId})}">
-									<button type="button" class="btn btn-xs btn-danger">
-										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-										L&ouml;schen
-									</button>
-							</a></td>
+							<td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/delete(id=${player.playerId})}">Delete</a></td>
+				
 						</tr>
 						<!--  list all items ----------------------------------------------------------- -->
 					</tbody>

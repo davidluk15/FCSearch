@@ -15,17 +15,20 @@
 		<intercept-url pattern="/images/**" access="permitAll" />
 		<intercept-url pattern="/index" access="permitAll" />
 		
-		<intercept-url pattern="/editClub" access="hasRole('ADMIN') or hasRole('CLUB')" />
-		<intercept-url pattern="/addClub" access="hasRole('ADMIN') or hasRole('CLUB')" />
-		<intercept-url pattern="/editPlayer" access="hasRole('ADMIN') or hasRole('PLAYER')" />
-		<intercept-url pattern="/addPlayer" access="hasRole('ADMIN') or hasRole('PLAYER')" />
+		<intercept-url pattern="/delete*" access="hasRole('ROLE_ADMIN')" />
 		
+		<intercept-url pattern="/editClub" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_CLUB')" />
+		<intercept-url pattern="/addClub" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_CLUB')" />
+		<intercept-url pattern="/editPlayer" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_PLAYER')" />
+		<intercept-url pattern="/addPlayer" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_PLAYER')" />
+		
+
 
 		<!-- intercept-url pattern="/**" access="hasRole('USER')" / -->
 		<!-- intercept-url pattern="/**" access="hasRole('USER') or hasRole('ADMIN')" / -->
 		<!-- <intercept-url pattern="/" access="permitAll" /> -->
 		
-		<intercept-url pattern="/delete" access="hasRole('ADMIN')" />
+		
 
 		<form-login login-page="/login" default-target-url='/' always-use-default-target='true' />
 		<logout logout-url="/logout" />
