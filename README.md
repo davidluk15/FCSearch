@@ -1,4 +1,4 @@
-##FCSearch
+#FCSearch
 
 ## Work Load Distribution  
 
@@ -69,11 +69,11 @@ Our Data model includes the following relationships:
 
 2. The other way is to open eclipse and and import the project direct from the GitHub Repository.
 
-After importing the project you need to adapt the db.properties in /src fitting your database location. 
+3. After importing the project you need to adapt the db.properties in /src fitting your database location. 
 
-If you do not use MySQL you need to change hibernate.dialect in the dispatcher-servlet.xml according to your used database. 
+4. If you do not use MySQL you need to change hibernate.dialect in the dispatcher-servlet.xml according to your used database. 
 
-Set up a Apache Tomcat 8.5 Server and start project. 
+5. Set up a Apache Tomcat 8.5 Server and start project. 
 
 ## Releases
 
