@@ -61,6 +61,11 @@ public class ClubController {
      
     }
 	
+	@RequestMapping(value = { "contact" })
+	public String register(Model model) {
+		
+		return "contact";
+}
 
 	@ExceptionHandler(Exception.class)
 	public String handleAllException(Exception ex) {
