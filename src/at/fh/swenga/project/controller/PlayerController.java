@@ -48,16 +48,16 @@ public class PlayerController {
 
 		switch (searchType) {
 		case "query1":
-			// employees = employeeRepository.findAll();
+			players = playerRepository.findAll();
 			break;
 		case "query2":
-			// employees = employeeRepository.findByLastName(searchString);
+			players = playerRepository.findByPosition(searchString);
 			break;
 		case "query3":
-			// employees = employeeRepository.findByFirstName(searchString);
+			players = playerRepository.findByAvailabelTrainingDays(searchString);
 			break;
 		case "query4":
-			// employees = employeeRepository.findByFirstOrLastName(searchString);
+			players = playerRepository.findByAge(Integer.parseInt(searchString));
 			break;
 		case "query5":
 			// employees = employeeRepository.findByFirstOrLastNameZwei(searchString);
@@ -105,7 +105,7 @@ public class PlayerController {
 		} else {
 			model.addAttribute("count", count);
 		}
-		return "index";
+		return "listPlayers";
 	}
 
 	@RequestMapping(value = { "addPlayer" }, method = RequestMethod.GET)
@@ -122,6 +122,8 @@ public class PlayerController {
 
 		// System.out.println(playerModelForm.getFirstName());
 		if (bindingResult.hasErrors()) {
+			model.addAttribute("errorMessage", "Ein Fehler ist aufgetreten");
+
 			return "listPlayers";
 		}
 
