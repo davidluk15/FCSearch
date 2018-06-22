@@ -35,6 +35,9 @@ public class PlayerModel implements java.io.Serializable {
 	@Column(nullable = false, length = 30)
 	private String availabelTrainingDays;
 	
+	@Column(nullable = false, length = 30)
+	private String mailAdress;
+	
 	@Version
 	long version;
 
@@ -46,13 +49,14 @@ public class PlayerModel implements java.io.Serializable {
 		super();
 	}
 
-	public PlayerModel(String firstName, String lastName, String position, int age, String availabelTrainingDays) {
+	public PlayerModel(String firstName, String lastName, String position, int age, String availabelTrainingDays,String mailAdress ) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.position = position;
 		this.age = age;
 		this.availabelTrainingDays = availabelTrainingDays;
+		this.mailAdress = mailAdress;
 	}
 
 	public int getPlayerId() {
@@ -111,6 +115,16 @@ public class PlayerModel implements java.io.Serializable {
 
 	public void setAvailabelTrainingDays(String availabelTrainingDays) {
 		this.availabelTrainingDays = availabelTrainingDays;
+	}
+
+	
+	
+	public String getMailAdress() {
+		return mailAdress;
+	}
+
+	public void setMailAdress(String mailAdress) {
+		this.mailAdress = mailAdress;
 	}
 
 	public ClubModel getClub() {

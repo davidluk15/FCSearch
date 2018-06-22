@@ -156,7 +156,7 @@
 							<th data-sortable="true">Position</th>
 							<th data-sortable="true">Alter</th>
 							<th data-sortable="true">Trainingszeiten</th>
-							
+							<th data-sortable="true">E-Mail Adresse</th>
 							
 						</tr>
 					</thead>
@@ -169,12 +169,13 @@
 							<td th:text="${player.position}"></td>
 							<td th:text="${player.age}"></td>
 							<td th:text="${player.availabelTrainingDays}"></td>
+							<td th:text="${player.mailAdress}"></td>
 							<!-- <td sec:authorize="hasRole('ROLE_ADMIN')"> -->
 							
 							<td>
 							<a sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_PLAYER)" th:href="@{/editPlayer(playerId=${player.playerId})}">
 									<button type="button" class="btn btn-xs btn-success">
-										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+										<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 										Bearbeiten
 									</button>
 							</a></td>

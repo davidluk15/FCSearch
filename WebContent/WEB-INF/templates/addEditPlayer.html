@@ -64,7 +64,7 @@
 							</div>
 						</div>
 
-						<!-- --------------  type  ---------------- -->
+						<!-- --------------  Age  ---------------- -->
 						<div class="form-group">
 							<label for="inputAge" class="col-md-2 control-label">Alter</label>
 							<div class="col-md-10">
@@ -73,7 +73,7 @@
 							</div>
 						</div>
 
-						<!-- --------------  availabelTrainingDays ---------------- -->
+						<!-- --------------  availabelTrainingDays ---------->
 						<div class="form-group">
 							<label for="inputAvailabelTrainingDays"
 								class="col-md-2 control-label">Trainingstage</label>
@@ -83,7 +83,17 @@
 									th:value="${player} ? ${player.availabelTrainingDays}">
 							</div>
 						</div>
-
+						
+						<!-- --------------  Mail Adresse ---------->
+						<div class="form-group">
+							<label for="inputMailAdress"
+								class="col-md-2 control-label">E-Mail Adresse</label>
+							<div class="col-md-10">
+								<input class="form-control" id="inputMailAdress"
+									type="text" name="mailAdress"
+									th:value="${player} ? ${player.mailAdress}">
+							</div>
+						</div>
 
 
 

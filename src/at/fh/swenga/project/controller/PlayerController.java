@@ -140,6 +140,7 @@ public class PlayerController {
 		player.setAge(newPlayerModel.getAge());
 		player.setFirstName(newPlayerModel.getFirstName());
 		player.setAvailabelTrainingDays(newPlayerModel.getAvailabelTrainingDays());
+		player.setMailAdress(newPlayerModel.getMailAdress());
 
 		playerRepository.save(player);
 		return "forward:listPlayers";
@@ -164,9 +165,9 @@ public class PlayerController {
 			
 			String[] position = {"St\u00fcrmer","Innenverteidiger","Torwart","Rechter Verteidiger","Linker Verteidiger","Defensives Mittelfeld","Offensives Mittelfeld","Rechtsauﬂen","Linksauﬂen"};
 			String[] days = {"Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag"};
-
+			String[] mailAdress = {"test@gmail.com"};
 			
-			PlayerModel playerModel = new PlayerModel(df.getFirstName(),df.getLastName(),df.getItem(position),df.getNumberBetween(15, 60),df.getItem(days));
+			PlayerModel playerModel = new PlayerModel(df.getFirstName(),df.getLastName(),df.getItem(position),df.getNumberBetween(15, 60),df.getItem(days),df.getItem(mailAdress));
 	
 			playerRepository.save(playerModel);
 		}
