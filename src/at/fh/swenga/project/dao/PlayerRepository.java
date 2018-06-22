@@ -15,15 +15,19 @@ import at.fh.swenga.project.model.PlayerModel;
 public interface PlayerRepository extends JpaRepository<PlayerModel, Integer> {
 	
 
+	//public int findByPlayerId(int playerId);
 	
-	List<PlayerModel>findByFirstName(String firstName);
+	//List<PlayerModel>findByFirstName(String firstName);
 	
 	List<PlayerModel>findByLastName(String lastName);
 	
 	List<PlayerModel>findByPosition (String position);
 	
 	List<PlayerModel>findByAvailabelTrainingDays (String availabelTrainingDays);
-	
+
+	PlayerModel findByFirstName(String firstName);
+
+	PlayerModel findById(int playerId);
 
 	}
 

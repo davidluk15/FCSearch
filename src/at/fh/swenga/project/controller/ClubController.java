@@ -46,7 +46,7 @@ public class ClubController {
 		return "addEditClub";
 	}
 	
-<<<<<<< HEAD
+
 	@RequestMapping(value = {"editClub"})
 	public String showEditClub(Model model) {
 		
@@ -59,7 +59,7 @@ public class ClubController {
 
 		return "forward:listClubs";
 	}
-=======
+
 	@RequestMapping(value = "addClub", method = RequestMethod.POST)
     public String addEntry( ClubModel newClubModel, BindingResult bindingResult, Model model) 
 	{
@@ -83,7 +83,7 @@ public class ClubController {
 	
 	
 	
->>>>>>> 6e386f9b8d2e44ee7c52c6d6edc54bd45cf391a3
+
 	
 	@ExceptionHandler(Exception.class)
 	public String handleAllException(Exception ex) {

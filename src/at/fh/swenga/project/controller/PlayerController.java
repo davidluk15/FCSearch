@@ -2,14 +2,18 @@ package at.fh.swenga.project.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 
 import at.fh.swenga.project.dao.PlayerRepository;
 import at.fh.swenga.project.model.PlayerModel;
@@ -17,7 +21,7 @@ import at.fh.swenga.project.model.PlayerModel;
 
 @Controller 
 public class PlayerController {
-
+	
 	@Autowired
 	PlayerRepository playerRepository;
 	
@@ -109,11 +113,13 @@ public class PlayerController {
 	
 	
 	
-	@RequestMapping(value = {"addPlayer"}, method = RequestMethod.GET)
+	@RequestMapping(value = "addPlayer", method = RequestMethod.GET)
 	public String showAddPlayer(Model model) {
 		
 		List<PlayerModel> players = playerRepository.findAll();
 		model.addAttribute("players", players);
+		System.out.println(players);
+
 				
 		return "addEditPlayer";
 	}
@@ -127,20 +133,41 @@ public class PlayerController {
             return "listPlayers";
         }
         
+		System.out.println(newPlayerModel
+				);
+
       playerRepository.save(newPlayerModel);
       return listPlayers(model);
      
     }
 	
+	//######################################
 
 	
 	
 	
-	@RequestMapping(value = {"editPlayer"})
-	public String showEditPlayer(Model model) {
+	@GetMapping("/aufrufEditPlayer")
+	public String showEditPlayer(@Valid Model model, @RequestParam int id) {
+		List <PlayerModel> players = playerRepository.findAll()	;
+		System.out.println(players);
+		model.addAttribute("firstName",id);
+
 		
-		return "editPlayer";
+		return "addEditPlayer";
 	}
+	
+	@PostMapping("/editPlayer")
+	public String editPlayer(@Valid PlayerModel changePlayerModel, BindingResult bindingResult,
+			Model model) {
+ 
+		playerRepository.save(changePlayerModel);
+		
+		return "listPlayers";
+	}
+	
+	
+	
+	// #####################################################
 	
 	@RequestMapping("/deletePlayer")
 	public String deletePlayer(Model model, @RequestParam int id) {
