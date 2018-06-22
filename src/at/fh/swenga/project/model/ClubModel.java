@@ -52,13 +52,16 @@ public class ClubModel implements java.io.Serializable {
 
 	@Column(nullable = false, length = 30)
 	private int foundingYear;
+	
+	@Column(nullable = false, length = 30)
+	private String clubAdress;
 
 	public ClubModel() {
 		super();
 	}
 
 	public ClubModel(String clubName, String location, String trainingDays, String coach, String trainingTime,
-			String sponsor, int foundingYear) {
+			String sponsor, int foundingYear,String clubAdress) {
 		super();
 		this.clubName = clubName;
 		this.location = location;
@@ -67,6 +70,7 @@ public class ClubModel implements java.io.Serializable {
 		this.trainingTime = trainingTime;
 		this.sponsor = sponsor;
 		this.foundingYear = foundingYear;
+		this.clubAdress = clubAdress;
 	}
 
 	public int getClubId() {
@@ -155,5 +159,15 @@ public class ClubModel implements java.io.Serializable {
 		}
 		clubPlayers.add(clubPlayer);
 	}
+
+	public String getClubAdress() {
+		return clubAdress;
+	}
+
+	public void setClubAdress(String clubAdress) {
+		this.clubAdress = clubAdress;
+	}
+
+	
 
 }

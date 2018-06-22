@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import at.fh.swenga.project.dao.ClubRepository;
 import at.fh.swenga.project.model.ClubModel;
-import at.fh.swenga.project.model.PlayerModel;
 
 @Controller
 public class ClubController {
@@ -99,7 +98,7 @@ public class ClubController {
 		club.setTrainingTime(newClubModel.getTrainingTime());
 		club.setSponsor(newClubModel.getSponsor());
 		club.setFoundingYear(newClubModel.getFoundingYear());
-
+		club.setClubAdress(newClubModel.getClubAdress());
 
 		clubRepository.save(club);
 		return "forward:listClubs";
@@ -134,12 +133,13 @@ public class ClubController {
 			String[] days = {"Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag"};
 			String[] time = {"17:00","17:30","18:00","18:30","19:00","19:30","20:00"};
 			String[] sponsoren = {"Heineken","Puntigamer","Jägermeister","Murauer","Gösser","Jägermeister-Winterkräuter","Egger-Märzen"};
+			String[] maila = {"test@gmail.com"};
 
 
 
 
 			
-			ClubModel clubModel = new ClubModel(df.getItem(clubs),df.getStreetName(),df.getItem(days),df.getLastName(),df.getItem(time),df.getItem(sponsoren),df.getNumberBetween(1888, 2005));
+			ClubModel clubModel = new ClubModel(df.getItem(clubs),df.getCity(),df.getItem(days),df.getLastName(),df.getItem(time),df.getItem(sponsoren),df.getNumberBetween(1888, 2005),df.getItem(maila));
 			
 	
 			clubRepository.save(clubModel);

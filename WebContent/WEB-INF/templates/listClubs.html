@@ -153,11 +153,12 @@
 						<tr>
 							<th data-sortable="true">ClubID</th>
 							<th data-sortable="true">Vereinsname</th>
-							<th data-sortable="true">Location</th>
+							<th data-sortable="true">Ort</th>
 							<th data-sortable="true">Trainingstage</th>
 							<th data-sortable="true">Trainingszeit</th>
 							<th data-sortable="true">Sponsoren</th>
 							<th data-sortable="true">Gruendungsjahr</th>
+							<th data-sortable="true">E-Mail Adresse</th>
 							
 						</tr>
 					</thead>
@@ -171,6 +172,7 @@
 							<td th:text="${club.trainingTime}"></td>
 							<td th:text="${club.sponsor}"></td>
 							<td th:text="${club.foundingYear}"></td>
+							<td th:text="${club.clubAdress}"></td>
 							<td>
 							<a sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_CLUB)" th:href="@{/editClub(clubId=${club.clubId})}">
 									<button type="button" class="btn btn-xs btn-success">
