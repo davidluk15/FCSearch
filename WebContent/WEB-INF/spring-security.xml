@@ -16,9 +16,10 @@
 		<intercept-url pattern="/index" access="permitAll" />
 		
 		<intercept-url pattern="/editClub" access="hasRole('ADMIN') or hasRole('CLUB')" />
+		<intercept-url pattern="/addClub" access="hasRole('ADMIN') or hasRole('CLUB')" />
 		<intercept-url pattern="/editPlayer" access="hasRole('ADMIN') or hasRole('PLAYER')" />
 		<intercept-url pattern="/addPlayer" access="hasRole('ADMIN') or hasRole('PLAYER')" />
-		<intercept-url pattern="/addClub" access="hasRole('ADMIN') or hasRole('CLUB')" />
+		
 
 		<!-- intercept-url pattern="/**" access="hasRole('USER')" / -->
 		<!-- intercept-url pattern="/**" access="hasRole('USER') or hasRole('ADMIN')" / -->
