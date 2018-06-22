@@ -153,7 +153,7 @@
 				<p>
 					<span sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_CLUB')"> 
 					<a href="addClub">
-						<button type="button" class="btn btn-success">Neuen Verein hinzufügen</button>
+						<button type="button" class="btn btn-success">Neuen Verein hinzuf&uuml;gen</button>
 							</a></span>	
 							
 							<a href="fillClubsList">
@@ -190,8 +190,8 @@
 							<td th:text="${club.trainingTime}"></td>
 							<td th:text="${club.sponsor}"></td>
 							<td th:text="${club.foundingYear}"></td>
-							<!-- <td sec:authorize="hasRole('ROLE_ADMIN')"> -->
 							
+							<td sec:authorize="hasRole('ROLE_ADMIN')">
 							<a th:href="@{/deleteClub(clubId=${club.clubId})}">
 									<button type="button" class="btn btn-xs btn-danger">
 										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
@@ -199,11 +199,11 @@
 									</button>
 							</a>
 							
-							
+							<td sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_CLUB)">
 							<a th:href="@{/editClub(clubId=${club.clubId})}">
 									<button type="button" class="btn btn-xs btn-success">
 										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-										bearbeiten
+										Bearbeiten
 									</button>
 							</a></td>
 						</tr>
